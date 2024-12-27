@@ -27,9 +27,12 @@ export const api = createApi({
       // Giúp đồng bộ hóa dữ liệu
       invalidatesTags: ["Projects"],
     }),
-    getTasks: build.query<Task[], void>({
-      query: () => "tasks", // Tương ứng với API: GET /tasks
-      providesTags: ["Tasks"],
+    getTasks: build.query<Task[], { projectId: number }>({
+      query: ({ projectId }) => `tasks?projectId=${projectId}`,
+      providesTags: (result) =>
+        result
+          ? result.map(({ id }) => ({ type: "Tasks" as const, id }))
+          : [{ type: "Tasks" as const }],
     }),
     getUserTasks: build.query<Task[], number>({
       query: (userId) => `tasks/user/${userId}`, // Tương ứng với API: GET /tasks/user/${userId}
@@ -59,4 +62,11 @@ export const api = createApi({
   }),
 });
 
-export const { useGetProjectsQuery } = api;
+export const {
+  useGetProjectsQuery,
+  useCreateProjectMutation,
+  useCreateTaskMutation,
+  useGetTasksQuery,
+  useGetUserTasksQuery,
+  useUpdateTaskStatusMutation,
+} = api;
