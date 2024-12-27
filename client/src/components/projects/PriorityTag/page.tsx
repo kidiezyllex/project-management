@@ -7,7 +7,7 @@ type PriorityTagProps = {
 
 export const PriorityTag: React.FC<PriorityTagProps> = ({ priority }) => (
   <div
-    className={`rounded-full px-2 py-1 text-xs font-semibold ${
+    className={`rounded-full px-3 py-1 text-xs font-semibold ${
       priority === "Urgent"
         ? "bg-red-200 text-red-700"
         : priority === "High"

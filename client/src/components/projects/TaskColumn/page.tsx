@@ -4,6 +4,7 @@ import { Task as TaskType } from "@/lib/types";
 import { EllipsisVertical, Plus } from "lucide-react";
 import { Task } from "../Task/page";
 import { useUpdateTaskStatusMutation } from "@/state/api";
+import { Button } from "@/components/ui/button";
 
 type TaskColumnProps = {
   status: string;
@@ -54,11 +55,11 @@ export const TaskColumn: React.FC<TaskColumnProps> = ({
           className="w-2 rounded-s-lg"
           style={{ backgroundColor: statusColor[status] }}
         />
-        <div className="dark:bg-dark-secondary flex w-full items-center justify-between rounded-e-lg bg-white px-5 py-4">
-          <h3 className="flex items-center text-lg font-semibold dark:text-white">
+        <div className="flex w-full items-center justify-between rounded-e-lg border bg-primary-foreground px-5 py-4">
+          <h3 className="flex items-center text-base font-semibold text-slate-600 dark:text-slate-300">
             {status}{" "}
             <span
-              className="dark:bg-dark-tertiary ml-2 inline-block rounded-full bg-gray-200 p-1 text-center text-sm leading-none"
+              className="dark:bg-dark-tertiary ml-2 inline-block rounded-full border bg-secondary p-1 text-center text-sm leading-none"
               style={{ width: "1.5rem", height: "1.5rem" }}
             >
               {tasksCount}
@@ -68,12 +69,14 @@ export const TaskColumn: React.FC<TaskColumnProps> = ({
             <button className="flex h-6 w-5 items-center justify-center dark:text-neutral-500">
               <EllipsisVertical size={26} />
             </button>
-            <button
-              className="dark:bg-dark-tertiary flex h-6 w-6 items-center justify-center rounded bg-gray-200 dark:text-white"
+            <Button
+              className="h-7 w-7 rounded-lg"
+              size="icon"
+              variant="outline"
               onClick={() => setIsModalNewTaskOpen(true)}
             >
-              <Plus size={16} />
-            </button>
+              <Plus className="h-4 w-4" />
+            </Button>
           </div>
         </div>
       </div>

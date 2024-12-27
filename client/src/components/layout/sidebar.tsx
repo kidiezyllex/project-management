@@ -73,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       />
       <div
         ref={sidebarRef}
-        className={`fixed left-0 top-0 h-full w-64 transform bg-background text-slate-600 shadow-lg transition-transform duration-300 ease-in-out dark:text-slate-300 ${
+        className={`z-1000 fixed left-0 top-0 h-full w-64 transform bg-background text-slate-600 shadow-lg transition-transform duration-300 ease-in-out dark:text-slate-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } overflow-y-auto`}
       >

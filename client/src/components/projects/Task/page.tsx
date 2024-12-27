@@ -5,6 +5,7 @@ import { EllipsisVertical, MessageSquareMore } from "lucide-react";
 import Image from "next/image";
 import { format } from "date-fns";
 import { PriorityTag } from "../PriorityTag/page";
+import { Separator } from "@/components/ui/separator";
 
 type TaskProps = {
   task: TaskType;
@@ -12,7 +13,6 @@ type TaskProps = {
 
 export const Task: React.FC<TaskProps> = ({ task }) => {
   const ref = useRef<HTMLDivElement>(null);
-
   const [{ isDragging }, drag] = useDrag<
     { id: number },
     void,
@@ -41,7 +41,7 @@ export const Task: React.FC<TaskProps> = ({ task }) => {
   return (
     <div
       ref={ref}
-      className={`dark:bg-dark-secondary mb-4 rounded-md bg-white shadow ${
+      className={`mb-4 rounded-lg border bg-primary-foreground ${
         isDragging ? "opacity-50" : "opacity-100"
       }`}
     >
@@ -62,7 +62,7 @@ export const Task: React.FC<TaskProps> = ({ task }) => {
               {taskTagsSplit.map((tag) => (
                 <div
                   key={tag}
-                  className="rounded-full bg-blue-100 px-2 py-1 text-xs"
+                  className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-slate-600"
                 >
                   {tag}
                 </div>
@@ -83,15 +83,14 @@ export const Task: React.FC<TaskProps> = ({ task }) => {
           )}
         </div>
 
-        <div className="text-xs text-gray-500 dark:text-neutral-500">
+        <div className="text-xs text-slate-600 dark:text-muted-foreground">
           {formattedStartDate && <span>{formattedStartDate} - </span>}
           {formattedDueDate && <span>{formattedDueDate}</span>}
         </div>
-        <p className="text-sm text-gray-600 dark:text-neutral-500">
+        <p className="text-sm text-slate-600 dark:text-muted-foreground">
           {task.description}
         </p>
-        <div className="dark:border-stroke-dark mt-4 border-t border-gray-200" />
-
+        <Separator className="my-3 border"></Separator>
         {/* Users */}
         <div className="mt-3 flex items-center justify-between">
           <div className="flex -space-x-[6px] overflow-hidden">
